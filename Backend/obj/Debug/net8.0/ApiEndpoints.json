@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "Backend.Controllers.ConversationsController",
+    "Method": "Post",
+    "RelativePath": "api/Conversations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "message",
+        "Type": "Backend.Models.ConversationMessageWithSession",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.FaqsController",
+    "Method": "GetByQuestion",
+    "RelativePath": "api/Faqs/getByQuestion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Backend.Models.QuestionRequestWithSession",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.FaqsController",
+    "Method": "Start",
+    "RelativePath": "api/Faqs/start",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

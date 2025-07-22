@@ -1,0 +1,207 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Capsibuddy\\Backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\models\\questionrequestwithsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:models\\questionrequestwithsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\models\\faq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:models\\faq.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\models\\conversationmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:models\\conversationmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\controllers\\faqscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:controllers\\faqscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\models\\conversation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:models\\conversation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\models\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:models\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\services\\conversationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:services\\conversationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\services\\faqservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:services\\faqservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\controllers\\conversationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:controllers\\conversationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|d:\\capsibuddy\\backend\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D67C391-5038-4369-BA11-46E391A83209}|Backend.csproj|solutionrelative:hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuestionRequestWithSession.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Models\\QuestionRequestWithSession.cs",
+              "RelativeDocumentMoniker": "Models\\QuestionRequestWithSession.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Models\\QuestionRequestWithSession.cs",
+              "RelativeToolTip": "Models\\QuestionRequestWithSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T14:12:04.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:42:04.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "Hubs\\ChatHub.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "Hubs\\ChatHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:40:38.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ConversationsController.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Controllers\\ConversationsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ConversationsController.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Controllers\\ConversationsController.cs",
+              "RelativeToolTip": "Controllers\\ConversationsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:36:23.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Models\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "Models\\ApiResponse.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Models\\ApiResponse.cs",
+              "RelativeToolTip": "Models\\ApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:33:11.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FaqsController.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Controllers\\FaqsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FaqsController.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Controllers\\FaqsController.cs",
+              "RelativeToolTip": "Controllers\\FaqsController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAwC4AAABlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:32:19.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ConversationService.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Services\\ConversationService.cs",
+              "RelativeDocumentMoniker": "Services\\ConversationService.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Services\\ConversationService.cs",
+              "RelativeToolTip": "Services\\ConversationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:31:15.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FaqService.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Services\\FaqService.cs",
+              "RelativeDocumentMoniker": "Services\\FaqService.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Services\\FaqService.cs",
+              "RelativeToolTip": "Services\\FaqService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:30:44.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConversationMessage.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Models\\ConversationMessage.cs",
+              "RelativeDocumentMoniker": "Models\\ConversationMessage.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Models\\ConversationMessage.cs",
+              "RelativeToolTip": "Models\\ConversationMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:29:15.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Conversation.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Models\\Conversation.cs",
+              "RelativeDocumentMoniker": "Models\\Conversation.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Models\\Conversation.cs",
+              "RelativeToolTip": "Models\\Conversation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:28:30.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Faq.cs",
+              "DocumentMoniker": "D:\\Capsibuddy\\Backend\\Models\\Faq.cs",
+              "RelativeDocumentMoniker": "Models\\Faq.cs",
+              "ToolTip": "D:\\Capsibuddy\\Backend\\Models\\Faq.cs",
+              "RelativeToolTip": "Models\\Faq.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T08:26:15.435Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
