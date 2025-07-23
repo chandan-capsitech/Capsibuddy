@@ -9,7 +9,7 @@ namespace Backend.Hubs
             var sessionId = Context.GetHttpContext()?.Request.Query["sessionId"];
             if (!string.IsNullOrWhiteSpace(sessionId))
             {
-                await Groups.AddToGroupAsync(Context.ConnectionId, sessionId);
+                await Groups.AddToGroupAsync(Context.ConnectionId, sessionId!);
             }
             await base.OnConnectedAsync();
         }
