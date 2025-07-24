@@ -16,13 +16,27 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ConversationMessageWithSession message)
+        public async Task<ApiResponse<string>> Post([FromBody] ConversationMessageWithSession message)
         {
-            if (message == null || string.IsNullOrWhiteSpace(message.SessionId))
-                return BadRequest("SessionId and message are required.");
+            var res = new ApiResponse<string>();
+            try
+            {
+                if (message == null || string.IsNullOrWhiteSpace(message.SessionId))
+                {
+                    res.Message = "Fields are required";
+                    res.Status = false;
+                    return res;
+                }
 
-            await _conversationService.AddMessageAsync(message);
-            return Ok();
+                await _conversationService.AddMessageAsync(message);
+                res.Result = "Success";
+            }
+            catch (Exception ex)
+            {
+                res.Message = ex.Message;
+                res.Status = false;
+            }
+            return res;
         }
     }
 }

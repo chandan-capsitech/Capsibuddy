@@ -18,75 +18,107 @@ namespace Backend.Controllers
         }
 
         [HttpPost("start")]
-        public async Task<IActionResult> Start()
+        public async Task<ApiResponse<object>> Start()
         {
-            var sessionId = Guid.NewGuid().ToString();
-            var faqs = await _faqService.GetAllAsync();
-
-            var questions = new List<object>();
-            foreach (var faq in faqs)
-                questions.Add(new { faq.Question });
-
-            // Save greet message in conversation
-            await _conversationService.AddMessageAsync(new ConversationMessageWithSession
+            var res = new ApiResponse<object>();
+            try
             {
-                SessionId = sessionId,
-                Sender = "bot",
-                Message = "Hi! How can I help you today? Please choose a question below."
-            });
+                var sessionId = Guid.NewGuid().ToString();
+                var faqs = await _faqService.GetAllAsync();
 
-            return Ok(new
+                var questions = new List<object>();
+                foreach (var faq in faqs)
+                    questions.Add(new { faq.Question });
+
+                // Save greet message in conversation
+                await _conversationService.AddMessageAsync(new ConversationMessageWithSession
+                {
+                    SessionId = sessionId,
+                    Sender = "bot",
+                    Message = "Hi! How can I help you today?"
+                });
+
+                var data = new
+                {
+                    sessionId,
+                    greet = "Hi! How can I help you today?",
+                    questions
+                };
+                res.Result = data;
+                res.Status = true;
+                res.Message = "Fetched successfully";
+            }
+            catch (Exception e)
             {
-                sessionId,
-                greet = "Hi! How can I help you today? Please choose a question below.",
-                questions
-            });
+                res.Status = false;
+                res.Message = e.Message;
+            }
+            return res;
         }
 
         [HttpPost("getByQuestion")]
-        public async Task<IActionResult> GetByQuestion([FromBody] QuestionRequestWithSession request)
+        public async Task<ApiResponse<object>> GetByQuestion([FromBody] QuestionRequestWithSession request)
         {
-            if (string.IsNullOrWhiteSpace(request.Question))
-                return BadRequest("Question is required.");
-            if (string.IsNullOrWhiteSpace(request.SessionId))
-                return BadRequest("SessionId is required.");
-            if (string.IsNullOrWhiteSpace(request.Sender))
-                return BadRequest("Sender is required.");
-
-            var faqs = await _faqService.GetAllAsync();
-
-            Faq found = FindFaqByQuestion(faqs, request.Question);
-            if (found == null)
-                return NotFound("Question not found.");
-
-            // Save user's question message
-            await _conversationService.AddMessageAsync(new ConversationMessageWithSession
+            var res = new ApiResponse<object>();
+            try
             {
-                SessionId = request.SessionId,
-                Sender = request.Sender,
-                Message = request.Question
-            });
+                if (string.IsNullOrWhiteSpace(request.Question) ||
+                    string.IsNullOrWhiteSpace(request.SessionId) ||
+                    string.IsNullOrWhiteSpace(request.Sender))
+                {
+                    res.Status = false;
+                    res.Message = "Required all fields";
+                    return res;
+                }
 
-            // Save bot's answer message
-            await _conversationService.AddMessageAsync(new ConversationMessageWithSession
-            {
-                SessionId = request.SessionId,
-                Sender = "bot",
-                Message = found.Answer
-            });
+                var faqs = await _faqService.GetAllAsync();
 
-            var optionQuestions = new List<object>();
-            if (found.Options != null)
-            {
-                foreach (var opt in found.Options)
-                    optionQuestions.Add(new { opt.Question });
+                Faq found = FindFaqByQuestion(faqs, request.Question);
+                if (found == null)
+                {
+                    res.Status = false;
+                    res.Message = "Question not found";
+                    return res;
+                }
+
+                // Save user's question message
+                await _conversationService.AddMessageAsync(new ConversationMessageWithSession
+                {
+                    SessionId = request.SessionId,
+                    Sender = request.Sender,
+                    Message = request.Question
+                });
+
+                // Save bot's answer message
+                await _conversationService.AddMessageAsync(new ConversationMessageWithSession
+                {
+                    SessionId = request.SessionId,
+                    Sender = "bot",
+                    Message = found.Answer
+                });
+
+                var optionQuestions = new List<object>();
+                if (found.Options != null)
+                {
+                    foreach (var opt in found.Options)
+                        optionQuestions.Add(new { opt.Question });
+                }
+
+                var data = new
+                {
+                    answer = found.Answer,
+                    options = optionQuestions
+                };
+                res.Result = data;
+                res.Status = true;
+                res.Message = "Got fetched";
             }
-
-            return Ok(new
+            catch (Exception e)
             {
-                answer = found.Answer,
-                options = optionQuestions
-            });
+                res.Status = false;
+                res.Message = e.Message;
+            }
+            return res;
         }
 
         private Faq FindFaqByQuestion(IEnumerable<Faq> faqs, string question)
@@ -103,7 +135,7 @@ namespace Backend.Controllers
                         return found;
                 }
             }
-            return null;
+            return null!;
         }
     }
 
