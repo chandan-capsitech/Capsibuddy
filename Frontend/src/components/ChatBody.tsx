@@ -8,13 +8,25 @@ type Props = {
     onSelect: (q: string) => void;
     inLiveChat: boolean;
     scrollRef: any;
+    backAvailable: boolean;           // NEW
+    onBack: () => void;
 };
 
-const ChatBody = ({ messages, options, onSelect, inLiveChat, scrollRef }: Props) => (
-    <main class="flex-1 bg-white py-2 px-1 overflow-y-auto rounded-b-none">
+const ChatBody = ({ messages, options, onSelect, inLiveChat, scrollRef, backAvailable, onBack }: Props) => (
+    <main class="flex-1 bg-white p-1 overflow-y-auto rounded-b-none">
         <MessageList messages={messages} />
+
         {!inLiveChat && <OptionGrid options={options} onSelect={onSelect} />}
-        <div ref={scrollRef} />
+        <div ref={scrollRef} /> 
+        {!inLiveChat && backAvailable && (
+            <button
+                onClick={onBack}
+                class="absolute left-2 bottom-20 font-normal text-[#43319A]"
+                style={{ zIndex: 10 }}
+            >
+                ← Back
+            </button>
+        )}
     </main>
 );
 

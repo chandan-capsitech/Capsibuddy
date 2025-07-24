@@ -10,7 +10,7 @@ const MessageList = ({ messages }: Props) => (
         class={`flex ${msg.sender === "customer" ? "justify-end" : "justify-start"}`}
       >
         <div
-          class={`p-2 max-w-[70%] break-words text-sm font-normal
+          class={`sm:py-2 py-1 px-2 sm:px-2 max-w-[70%] break-words text-xs sm:text-sm font-normal
             ${msg.sender === "customer"
               ? "text-[#44329B] border-1 rounded-b-2xl rounded-tl-2xl  border-[#44329B]"
               : "bg-[#F4F4F4] rounded-b-2xl rounded-tr-2xl text-[#171717]"}`}

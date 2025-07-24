@@ -3,7 +3,7 @@ type Props = {
 };
 
 const ChatHeader = ({ onClose }: Props) => (
-    <header class="bg-gradient-to-r from-[#43319A] to-[#6E6EC5] px-2 py-6 rounded-t-3xl flex items-center shadow gap-3">
+    <header class="bg-gradient-to-r from-[#43319A] to-[#6E6EC5] px-2 py-3 sm:py-6 rounded-t-3xl flex items-center shadow gap-3">
         <img src="logo.png" alt="" className="h-10 w-10" />
         <div className="flex flex-col gap-2">
             <h2 class="text-white font-bold text-2xl">Capsibot</h2>

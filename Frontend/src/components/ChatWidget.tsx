@@ -47,13 +47,33 @@ const ChatWidget = ({ onClose }: Props) => {
     }, [liveChat, sessionId]);
 
     // Option click
-    const onSelect = async (question: string) => {
-        setMessages(prev => [...prev, { sender: "customer", message: question }]);
-        const payload = { Question: question, SessionId: sessionId, Sender: "customer" };
-        const res = await getByQuestion(payload);
-        setMessages(prev => [...prev, { sender: "bot", message: res.data.result.answer }]);
-        setFaqStack(prev => [...prev, { question, options }]);
-        setOptions(res.data.result.options);
+    const onSelect = async (question: string, escalate?: boolean) => {
+        try {
+            if (escalate) {
+                // User chose to talk to a real person
+                setLiveChat(true);
+                setMessages((prev) => [
+                    ...prev,
+                    { sender: "customer", message: question },
+                    { sender: "bot", message: "Thanks for joining us! Let's start by getting your name." },
+                ]);
+                setOptions([]); // Remove FAQ options when live chat starts
+                return;
+            }
+
+            setMessages((prev) => [...prev, { sender: "customer", message: question }]);
+
+            const payload = { Question: question, SessionId: sessionId, Sender: "customer" };
+            const res = await getByQuestion(payload);
+            const data = res.data.result;
+
+            setMessages((prev) => [...prev, { sender: "bot", message: data.answer }]);
+            setFaqStack((prev) => [...prev, { question, options }]);
+            setOptions(data.options);
+        } catch (error) {
+            console.error("Error fetching FAQ answer:", error);
+            setMessages((prev) => [...prev, { sender: "bot", message: "Sorry, we couldn’t get an answer. Please try again." }]);
+        }
     };
 
     // Back button
@@ -64,7 +84,8 @@ const ChatWidget = ({ onClose }: Props) => {
         setOptions(prev.options);
         setMessages(msgs => {
             const arr = [...msgs];
-            arr.pop(); arr.pop();
+            arr.pop();
+            arr.pop();
             return arr;
         });
     };
@@ -79,14 +100,16 @@ const ChatWidget = ({ onClose }: Props) => {
     };
 
     return (
-        <div class="fixed bottom-15 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] min-h-[580px] sm:min-h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl">
-            <ChatHeader onClose={onClose}/>
+        <div class="fixed bottom-20 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] min-h-[580px] sm:min-h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl">
+            <ChatHeader onClose={onClose} />
             <ChatBody
                 messages={messages}
                 options={options}
                 onSelect={onSelect}
                 inLiveChat={liveChat}
                 scrollRef={scrollRef}
+                backAvailable={!liveChat && faqStack.length > 0}
+                onBack={onBack}
             />
             <ChatFooter
                 inLiveChat={liveChat}
@@ -95,8 +118,6 @@ const ChatWidget = ({ onClose }: Props) => {
                 onSend={onSend}
                 canSend={!!input.trim()}
                 onEscalate={() => setLiveChat(true)}
-                backAvailable={!liveChat && faqStack.length > 0}
-                onBack={onBack}
             />
             <div ref={scrollRef} />
         </div>
