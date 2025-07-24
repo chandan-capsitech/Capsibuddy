@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from "preact/hooks";
-import axios from "axios";
-import { createSignalRConnection } from "../utils/signalr";
-import type { Message, FaqOption, StartResponse, QuestionResponse } from "../types/types";
+import { createSignalRConnection } from "../utils/signalR";
 import ChatHeader from "./ChatHeader";
 import ChatBody from "./ChatBody";
 import ChatFooter from "./ChatFooter";
+import { startChat, getByQuestion } from "../api/faqApi";
+import type { Message, FaqOption } from "../types/faq";
 
-const BACKEND = "http://localhost:5151";
+type Props = { onClose: () => void };
 
-const ChatWidget = () => {
-    const [sessionId, setSessionId] = useState<string>("");
+const ChatWidget = ({ onClose }: Props) => {
+    const [sessionId, setSessionId] = useState("");
     const [messages, setMessages] = useState<Message[]>([]);
     const [options, setOptions] = useState<FaqOption[]>([]);
     const [faqStack, setFaqStack] = useState<{ question: string; options: FaqOption[] }[]>([]);
@@ -17,113 +17,88 @@ const ChatWidget = () => {
     const [input, setInput] = useState("");
     const [connection, setConnection] = useState<any>(null);
 
-    const messagesEndRef = useRef<HTMLDivElement>(null);
+    // Scroll to last message/option
+    const scrollRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, options]);
 
-    // Start session on mount
+    // Chat session start
     useEffect(() => {
-        async function start() {
-            try {
-                const res = await axios.post<StartResponse>(`${BACKEND}/api/faqs/start`);
-                console.log(res);
-                setSessionId(res.data.sessionId);
-                setMessages([{ sender: "bot", message: res.data.greet }]);
-                setOptions(res.data.questions);
-                setFaqStack([]);
-            } catch (e) {
-                console.error(e);
-                setMessages([{ sender: "bot", message: "Sorry, could not load FAQs." }]);
-            }
-        }
-        start();
+        startChat().then(res => {
+            setSessionId(res.data.result.sessionId);
+            setMessages([{ sender: "bot", message: res.data.result.greet }]);
+            setOptions(res.data.result.questions);
+            setFaqStack([]);
+        });
     }, []);
 
-    // Setup SignalR when live chat active
+    // SignalR live chat
     useEffect(() => {
         if (!liveChat || !sessionId) return;
-
         const conn = createSignalRConnection(sessionId);
-        conn.start()
-            .then(() => {
-                conn.on("ReceiveMessage", (_sessionId, sender, message) => {
-                    setMessages((prev) => [...prev, { sender, message }]);
-                });
-            })
-            .catch(console.error);
+        conn.start().then(() => {
+            conn.on("ReceiveMessage", (_: string, sender: string, message: string) => {
+                setMessages(prev => [...prev, { sender: sender as "customer" | "bot", message }]);
+            });
+        });
         setConnection(conn);
-
-        return () => {
-            conn.stop();
-        };
+        return () => { conn.stop(); };
     }, [liveChat, sessionId]);
 
-    // User selects FAQ question
+    // Option click
     const onSelect = async (question: string) => {
-        try {
-            setMessages((prev) => [...prev, { sender: "customer", message: question }]);
-            const payload = {
-                sessionId,
-                sender: "customer",
-                message: question, // <-- must match backend's 'Message' property
-            };
-            const res = await axios.post<QuestionResponse>(`${BACKEND}/api/faqs/getByQuestion`, payload);
-            setMessages((prev) => [...prev, { sender: "bot", message: res.data.answer }]);
-            setFaqStack((prev) => [...prev, { question, options }]);
-            setOptions(res.data.options);
-        } catch (err) {
-            console.error(err);
-            setMessages((prev) => [
-                ...prev,
-                { sender: "bot", message: "Sorry, an error occurred fetching the answer." },
-            ]);
-        }
+        setMessages(prev => [...prev, { sender: "customer", message: question }]);
+        const payload = { Question: question, SessionId: sessionId, Sender: "customer" };
+        const res = await getByQuestion(payload);
+        setMessages(prev => [...prev, { sender: "bot", message: res.data.result.answer }]);
+        setFaqStack(prev => [...prev, { question, options }]);
+        setOptions(res.data.result.options);
     };
 
-    // Send message in live chat
-    const onSend = () => {
-        if (!connection || !input.trim()) return;
-        const message = input.trim();
-        setMessages((prev) => [...prev, { sender: "customer", message }]);
-        connection.invoke("SendMessage", sessionId, "customer", message);
-        setInput("");
-    };
-
-    // Navigate back in FAQ stack
+    // Back button
     const onBack = () => {
         if (faqStack.length === 0) return;
         const prev = faqStack[faqStack.length - 1];
         setFaqStack(faqStack.slice(0, -1));
         setOptions(prev.options);
-        setMessages((msgs) => {
+        setMessages(msgs => {
             const arr = [...msgs];
-            if (arr.length >= 2) {
-                arr.pop();
-                arr.pop();
-            }
+            arr.pop(); arr.pop();
             return arr;
         });
     };
 
-    // Start live chat
-    const onEscalate = () => setLiveChat(true);
+    // Live chat send
+    const onSend = () => {
+        if (!connection || !input.trim()) return;
+        const message = input.trim();
+        setMessages(prev => [...prev, { sender: "customer", message }]);
+        connection.invoke("SendMessage", sessionId, "customer", message);
+        setInput("");
+    };
 
     return (
-        <div class="fixed bottom-20 right-8 w-[400px] max-h-[700px] z-50 flex flex-col bg-white rounded-2xl shadow-2xl ring-1 ring-indigo-200">
-            <ChatHeader />
-            <ChatBody messages={messages} options={options} onSelect={onSelect} inLiveChat={liveChat} />
+        <div class="fixed bottom-15 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] min-h-[580px] sm:min-h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl">
+            <ChatHeader onClose={onClose}/>
+            <ChatBody
+                messages={messages}
+                options={options}
+                onSelect={onSelect}
+                inLiveChat={liveChat}
+                scrollRef={scrollRef}
+            />
             <ChatFooter
                 inLiveChat={liveChat}
                 input={input}
                 setInput={setInput}
                 onSend={onSend}
                 canSend={!!input.trim()}
-                onEscalate={onEscalate}
+                onEscalate={() => setLiveChat(true)}
                 backAvailable={!liveChat && faqStack.length > 0}
                 onBack={onBack}
             />
-            <div ref={messagesEndRef} />
+            <div ref={scrollRef} />
         </div>
     );
 };

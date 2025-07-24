@@ -1,24 +1,26 @@
-import type { FunctionalComponent } from "preact";
-import type { FaqOption } from "../types/types";
+import type { FaqOption } from "../types/faq";
 
-interface Props {
+type Props = {
     options: FaqOption[];
     onSelect: (question: string) => void;
-}
+};
 
-const OptionGrid: FunctionalComponent<Props> = ({ options, onSelect }) => (
-    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 mt-6">
-        {options.map((opt, idx) => (
-            <button
-                key={idx}
-                type="button"
-                onClick={() => onSelect(opt.Question)}
-                class="rounded-lg border border-indigo-400 p-4 text-indigo-700 font-semibold text-left shadow hover:bg-indigo-50 transition focus:outline-none focus:ring-2 focus:ring-indigo-600"
-            >
-                {opt.Question}
+const OptionGrid = ({ options, onSelect }: Props) =>
+    options.length > 0 ? (
+        <div class="flex flex-col items-end gap-2 my-2 mx-2">
+            {options.map((opt, idx) => (
+                <button
+                    key={idx}
+                    onClick={() => onSelect(opt.question)}
+                    class=" rounded-3xl border border-[#A3B9FA] p-2 bg-[#FFFFFF] text-[#6D6CC4] font-normal text-sm hover:bg-indigo-50 active:bg-indigo-100 transition cursor-pointer"
+                >
+                    {opt.question}
+                </button>
+            ))}
+            <button class=" rounded-3xl border border-[#A3B9FA] p-2 bg-[#FFFFFF] text-[#6D6CC4] font-normal text-sm hover:bg-indigo-50 active:bg-indigo-100 transition cursor-pointer">
+                Talk to someone
             </button>
-        ))}
-    </div>
-);
+        </div>
+    ) : null;
 
 export default OptionGrid;

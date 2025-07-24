@@ -1,29 +1,25 @@
-import type { FunctionalComponent } from "preact";
-import type { Message } from "../types/types";
+import type { Message } from "../types/faq";
 
-interface Props {
-    messages: Message[];
-}
+type Props = { messages: Message[] };
 
-const MessageList: FunctionalComponent<Props> = ({ messages }) => (
-    <div class="space-y-3 px-4 py-2 max-h-[45vh] overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-400 scrollbar-track-gray-100" role="log" aria-live="polite">
-        {messages.map((msg, i) => (
-            <div
-                key={i}
-                class={`flex ${msg.sender === "customer" ? "justify-end" : "justify-start"}`}
-            >
-                <div
-                    class={`rounded-lg px-4 py-3 max-w-[75%] break-words whitespace-pre-wrap text-sm shadow-md 
+const MessageList = ({ messages }: Props) => (
+  <div class="space-y-3 px-1 py-2 max-h-105 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-400">
+    {messages.map((msg, i) => (
+      <div
+        key={i}
+        class={`flex ${msg.sender === "customer" ? "justify-end" : "justify-start"}`}
+      >
+        <div
+          class={`p-2 max-w-[70%] break-words text-sm font-normal
             ${msg.sender === "customer"
-                            ? "bg-gradient-to-l from-blue-500 to-indigo-600 text-white"
-                            : "bg-indigo-100 text-indigo-900"}`}
-                    aria-label={`${msg.sender === "customer" ? "You" : "Bot"} says: ${msg.message}`}
-                >
-                    {msg.message}
-                </div>
-            </div>
-        ))}
-    </div>
+              ? "text-[#44329B] border-1 rounded-b-2xl rounded-tl-2xl  border-[#44329B]"
+              : "bg-[#F4F4F4] rounded-b-2xl rounded-tr-2xl text-[#171717]"}`}
+        >
+          {msg.message}
+        </div>
+      </div>
+    ))}
+  </div>
 );
 
 export default MessageList;

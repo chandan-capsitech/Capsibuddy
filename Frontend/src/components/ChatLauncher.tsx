@@ -1,18 +1,12 @@
-import type { FunctionalComponent } from "preact";
+type Props = { onOpen: () => void };
 
-interface Props {
-    onOpen: () => void;
-}
-
-const ChatLauncher: FunctionalComponent<Props> = ({ onOpen }) => (
+const ChatLauncher = ({ onOpen }: Props) => (
     <button
         onClick={onOpen}
         aria-label="Open chat"
-        class="fixed bottom-8 right-8 z-50 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 shadow-lg p-4 transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 rounded-full shadow-lg p-4 transition-transform hover:scale-110 "
     >
-        <svg width="28" height="28" fill="white" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 2H4C2.897 2 2 2.894 2 4v16l4-4h14c1.103 0 2-.896 2-2V4c0-1.106-.897-2-2-2z" />
-        </svg>
+        <img src="logo.png" alt="" className="w-full h-full" />
     </button>
 );
 

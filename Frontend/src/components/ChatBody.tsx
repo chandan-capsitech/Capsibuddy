@@ -1,19 +1,20 @@
-import type { FunctionalComponent } from "preact";
-import type { Message, FaqOption } from "../types/types";
 import MessageList from "./MessageList";
 import OptionGrid from "./OptionGrid";
+import type { Message, FaqOption } from "../types/faq";
 
-interface Props {
+type Props = {
     messages: Message[];
     options: FaqOption[];
-    onSelect: (question: string) => void;
+    onSelect: (q: string) => void;
     inLiveChat: boolean;
-}
+    scrollRef: any;
+};
 
-const ChatBody: FunctionalComponent<Props> = ({ messages, options, onSelect, inLiveChat }) => (
-    <main class="flex-1 bg-white p-4 overflow-y-auto rounded-b-none md:px-6 md:py-4">
+const ChatBody = ({ messages, options, onSelect, inLiveChat, scrollRef }: Props) => (
+    <main class="flex-1 bg-white py-2 px-1 overflow-y-auto rounded-b-none">
         <MessageList messages={messages} />
-        {!inLiveChat && options.length > 0 && <OptionGrid options={options} onSelect={onSelect} />}
+        {!inLiveChat && <OptionGrid options={options} onSelect={onSelect} />}
+        <div ref={scrollRef} />
     </main>
 );
 

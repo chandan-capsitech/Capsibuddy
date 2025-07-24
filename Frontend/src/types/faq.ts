@@ -1,5 +1,5 @@
 export interface FaqOption {
-    Question: string;
+    question: string;
 }
 
 export interface Message {
@@ -8,12 +8,18 @@ export interface Message {
 }
 
 export interface StartResponse {
+    result: any;
     sessionId: string;
     greet: string;
     questions: FaqOption[];
 }
 
 export interface QuestionResponse {
+    result: any;
     answer: string;
     options: FaqOption[];
+}
+
+export interface Prop {
+    onClose: () => void;
 }
