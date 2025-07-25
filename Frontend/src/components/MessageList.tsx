@@ -3,7 +3,7 @@ import type { Message } from "../types/faq";
 type Props = { messages: Message[] };
 
 const MessageList = ({ messages }: Props) => (
-  <div class="space-y-3 px-1 py-2 max-h-105 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-400">
+  <div class="space-y-3 px-1 py-2 max-h-screen">
     {messages.map((msg, i) => (
       <div
         key={i}
