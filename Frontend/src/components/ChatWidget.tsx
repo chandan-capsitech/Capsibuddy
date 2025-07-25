@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { createSignalRConnection } from "../utils/signalR";
 import ChatHeader from "./ChatHeader";
 import ChatBody from "./ChatBody";
@@ -16,12 +16,6 @@ const ChatWidget = ({ onClose }: Props) => {
     const [liveChat, setLiveChat] = useState(false);
     const [input, setInput] = useState("");
     const [connection, setConnection] = useState<any>(null);
-
-    // Scroll to last message/option
-    const scrollRef = useRef<HTMLDivElement>(null);
-    setTimeout(() => {
-        scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
-    }, 100);
 
     // Chat session start
     useEffect(() => {
@@ -100,7 +94,7 @@ const ChatWidget = ({ onClose }: Props) => {
     };
 
     return (
-        <div class="fixed bottom-20 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] h-[580px] sm:h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl" ref={scrollRef}>
+        <div class="fixed bottom-20 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] h-[580px] sm:h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl">
             <ChatHeader onClose={onClose} />
             <ChatBody
                 messages={messages}
