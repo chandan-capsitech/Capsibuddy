@@ -7,17 +7,16 @@ type Props = {
     options: FaqOption[];
     onSelect: (q: string) => void;
     inLiveChat: boolean;
-    scrollRef: any;
     backAvailable: boolean;           // NEW
     onBack: () => void;
 };
 
-const ChatBody = ({ messages, options, onSelect, inLiveChat, scrollRef, backAvailable, onBack }: Props) => (
+const ChatBody = ({ messages, options, onSelect, inLiveChat, backAvailable, onBack }: Props) => (
     <main class="flex-1 bg-white p-1 overflow-y-auto rounded-b-none">
         <MessageList messages={messages} />
 
         {!inLiveChat && <OptionGrid options={options} onSelect={onSelect} />}
-        <div ref={scrollRef} /> 
+        {/* <div ref={scrollRef} />  */}
         {!inLiveChat && backAvailable && (
             <button
                 onClick={onBack}

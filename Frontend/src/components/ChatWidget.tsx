@@ -19,9 +19,9 @@ const ChatWidget = ({ onClose }: Props) => {
 
     // Scroll to last message/option
     const scrollRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages, options]);
+    setTimeout(() => {
+        scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+    }, 100);
 
     // Chat session start
     useEffect(() => {
@@ -100,14 +100,13 @@ const ChatWidget = ({ onClose }: Props) => {
     };
 
     return (
-        <div class="fixed bottom-20 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] min-h-[580px] sm:min-h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl">
+        <div class="fixed bottom-20 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] h-[580px] sm:h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl" ref={scrollRef}>
             <ChatHeader onClose={onClose} />
             <ChatBody
                 messages={messages}
                 options={options}
                 onSelect={onSelect}
                 inLiveChat={liveChat}
-                scrollRef={scrollRef}
                 backAvailable={!liveChat && faqStack.length > 0}
                 onBack={onBack}
             />
@@ -119,7 +118,6 @@ const ChatWidget = ({ onClose }: Props) => {
                 canSend={!!input.trim()}
                 onEscalate={() => setLiveChat(true)}
             />
-            <div ref={scrollRef} />
         </div>
     );
 };
