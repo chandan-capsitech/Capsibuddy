@@ -9,7 +9,7 @@ namespace Backend.Services
 
         public ConversationService(IMongoDatabase database)
         {
-            _conversations = database.GetCollection<Conversation>("Conversastions");
+            _conversations = database.GetCollection<Conversation>("conversations");
         }
 
         public async Task AddMessageAsync(ConversationMessageWithSession msg)

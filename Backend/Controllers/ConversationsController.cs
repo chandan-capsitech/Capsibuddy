@@ -29,9 +29,7 @@ namespace Backend.Controllers
                 }
 
                 await _conversationService.AddMessageAsync(message);
-                res.Status = true;
-                res.Message = "Message sent";
-                res.Result = message.Message;
+                res.Result = "Success";
             }
             catch (Exception ex)
             {
