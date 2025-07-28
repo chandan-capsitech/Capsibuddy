@@ -8,11 +8,11 @@ type Props = {
     options: FaqOption[];
     onSelect: (q: string) => void;
     inLiveChat: boolean;
-    backAvailable: boolean;
-    onBack: () => void;
+    isTyping?: boolean;
+    showOptions?: boolean;
 };
 
-const ChatBody = ({ messages, options, onSelect, inLiveChat, backAvailable, onBack }: Props) => {
+const ChatBody = ({ messages, options, onSelect, inLiveChat, isTyping = false, showOptions = true }: Props) => {
     const chatContainerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -25,21 +25,12 @@ const ChatBody = ({ messages, options, onSelect, inLiveChat, backAvailable, onBa
         }, 20);
 
         return () => clearTimeout(timer);
-    }, [messages, options]);
+    }, [messages, isTyping, options]);
 
     return (
         <main ref={chatContainerRef} class="flex-1 bg-white p-1 overflow-y-auto rounded-b-none no-scrollbar">
-            <MessageList messages={messages} />
-            {!inLiveChat && <OptionGrid options={options} onSelect={onSelect} />}
-            {!inLiveChat && backAvailable && (
-                <button
-                    onClick={onBack}
-                    class="absolute left-2 bottom-20 font-normal text-sm text-[#43319A]"
-                    style={{ zIndex: 10 }}
-                >
-                    ← Back
-                </button>
-            )}
+            <MessageList messages={messages} isTyping={isTyping} />
+            {!inLiveChat && showOptions && <OptionGrid options={options} onSelect={onSelect} />}
         </main>
     );
 }

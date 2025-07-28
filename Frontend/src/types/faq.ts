@@ -5,6 +5,7 @@ export interface FaqOption {
 export interface Message {
     sender: "customer" | "bot";
     message: string;
+    isLoading?: boolean;
 }
 
 export interface StartResponse {

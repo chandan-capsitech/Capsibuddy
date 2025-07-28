@@ -1,8 +1,12 @@
 import type { Message } from "../types/faq";
+import TypingIndicator from "./TypingIndicator";
 
-type Props = { messages: Message[] };
+type Props = {
+  messages: Message[];
+  isTyping?: boolean;
+};
 
-const MessageList = ({ messages }: Props) => (
+const MessageList = ({ messages, isTyping }: Props) => (
   <div class="space-y-3 px-1 py-2 max-h-screen">
     {messages.map((msg, i) => (
       <div
@@ -19,6 +23,7 @@ const MessageList = ({ messages }: Props) => (
         </div>
       </div>
     ))}
+    {isTyping && <TypingIndicator />}
   </div>
 );
 

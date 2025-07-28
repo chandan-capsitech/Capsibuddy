@@ -18,7 +18,7 @@ const OptionGrid = ({ options, onSelect }: Props) => {
                 <button
                     key={idx}
                     onClick={() => onSelect(opt.question, opt.escalate)}
-                    class="rounded-3xl border p-1 sm:p-2 font-normal text-xs sm:text-sm cursor-pointer transition border-[#A3B9FA] bg-[#FFFFFF] text-[#6D6CC4] hover:bg-indigo-50 active:bg-indigo-100"
+                    class="rounded-3xl p-1 sm:p-2 font-normal text-xs sm:text-sm cursor-pointer shadow transition border-[#A3B9FA] bg-[#FFFFFF] text-[#6D6CC4] hover:text-[#ffff] hover:bg-linear-to-r from-[#43319A] to-[#A7BEFE]"
                     aria-label={opt.escalate ? "Talk to someone" : opt.question}
                     type="button"
                 >
