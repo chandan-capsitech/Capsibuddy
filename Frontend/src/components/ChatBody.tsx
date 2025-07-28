@@ -28,7 +28,7 @@ const ChatBody = ({ messages, options, onSelect, inLiveChat, isTyping = false, s
     }, [messages, isTyping, options]);
 
     return (
-        <main ref={chatContainerRef} class="flex-1 bg-white p-1 overflow-y-auto rounded-b-none no-scrollbar">
+        <main ref={chatContainerRef} class="flex-1 bg-white py-1 px-1.5 overflow-y-auto rounded-b-none no-scrollbar">
             <MessageList messages={messages} isTyping={isTyping} />
             {!inLiveChat && showOptions && <OptionGrid options={options} onSelect={onSelect} />}
         </main>
