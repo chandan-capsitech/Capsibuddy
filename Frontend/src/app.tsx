@@ -4,12 +4,14 @@ import ChatLauncher from "./components/ChatLauncher";
 import ChatWidget from "./components/ChatWidget";
 
 const App: FunctionalComponent = () => {
-   const [showChat, setShowChat] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+
+  const handleToggleChat = () => setShowChat(open => !open);
 
   return (
     <>
-      <ChatLauncher onOpen={() => setShowChat(true)} />
-      {showChat && <ChatWidget  onClose={() => setShowChat(false)} />}
+      <ChatLauncher onOpen={handleToggleChat} isOpen={showChat} />
+      {showChat && <ChatWidget onClose={handleToggleChat} />}
     </>
   );
 };

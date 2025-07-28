@@ -6,7 +6,7 @@ type Props = {
 };
 
 const ChatHeader = ({ onClose, inLiveChat, backAvailable, onBack }: Props) => (
-    <header class="bg-gradient-to-r from-[#43319A] to-[#6E6EC5] px-2 py-3 sm:py-6 rounded-t-3xl flex items-center shadow gap-3">
+    <header class="bg-gradient-to-l from-[#A7BEFE] via-[#6E6EC5] to-[#43319A] px-2 pt-3 py-3 sm:pt-6 rounded-t-3xl flex items-center shadow gap-3">
         <div className="flex flex-col gap-2 ml-2">
             <div className="flex flex-row gap-2">
                 <h2 class="text-white font-bold text-2xl font-sans">Capsibot</h2>
@@ -16,7 +16,7 @@ const ChatHeader = ({ onClose, inLiveChat, backAvailable, onBack }: Props) => (
             {!inLiveChat && backAvailable && (
                 <button
                     onClick={onBack}
-                    class="mr-[85%] cursor-pointer font-normal text-sm text-white shadow-2xl bg-gradient-to-r from-[#5347AA] to-[#A7BEFE] transparent border-none outline-none rounded-2xl"
+                    class="mr-[85%] cursor-pointer font-normal text-xs sm:text-sm text-white shadow-2xl bg-gradient-to-r from-[#5347AA] to-[#A7BEFE] transparent border-none outline-none rounded-2xl"
                 >
                     ←Back
                 </button>
@@ -26,7 +26,7 @@ const ChatHeader = ({ onClose, inLiveChat, backAvailable, onBack }: Props) => (
         {onClose && (
             <button
                 onClick={onClose}
-                class="p-2 text-white text-lg hover:bg-[#43319A] rounded-full w-9 h-9 transition focus:outline-none focus:ring-2 focus:ring-white"
+                class="p-2 text-white font-extrabold text-lg hover:bg-[#43319A] rounded-full w-9 h-9 transition focus:outline-none focus:ring-2 focus:ring-white"
                 aria-label="Close chat"
             >
                 <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
