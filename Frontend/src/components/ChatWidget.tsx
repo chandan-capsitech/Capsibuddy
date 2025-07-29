@@ -190,7 +190,7 @@ const ChatWidget = ({ onClose }: Props) => {
     };
 
     return (
-        <div class="fixed bottom-20 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] h-[580px] sm:h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl">
+        <div className="fixed bottom-20 right-6 sm:bottom-30 sm:right-8 w-[300px] sm:w-[400px] h-[580px] sm:h-[618px] z-50 flex flex-col bg-white rounded-3xl shadow-2xl">
             <ChatHeader
                 onClose={onClose}
                 inLiveChat={liveChat}

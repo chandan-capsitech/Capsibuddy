@@ -7,16 +7,16 @@ type Props = {
 };
 
 const MessageList = ({ messages, isTyping }: Props) => (
-  <div class="space-y-3 px-1 py-2 max-h-screen">
+  <div className="space-y-3 px-1 py-2 max-h-screen">
     {messages.map((msg, i) => (
       <div
         key={i}
-        class={`flex ${msg.sender === "customer" ? "justify-end" : "justify-start"}`}
+        className={`flex ${msg.sender === "customer" ? "justify-end" : "justify-start"}`}
       >
         <div
-          class={`sm:py-2 py-1 px-2 sm:px-2 max-w-[70%] break-words text-xs sm:text-sm font-normal shadow-xl
+          className={`sm:py-2 py-1 px-2 sm:px-2 max-w-[70%] break-words text-xs sm:text-sm font-normal shadow-xl
             ${msg.sender === "customer"
-              ? "text-[#44329B] border-1 rounded-b-2xl rounded-tl-2xl  border-[#44329B]"
+              ? "text-[#44329B] border-1 rounded-b-2xl rounded-tl-2xl  border-[#a999fd]"
               : "bg-[#F4F4F4] rounded-b-2xl rounded-tr-2xl text-[#171717]"}`}
         >
           {msg.message}
