@@ -1,5 +1,4 @@
-﻿
-namespace Backend.Models
+﻿namespace Backend.Models
 {
     public class ConversationMessage
     {
@@ -8,10 +7,4 @@ namespace Backend.Models
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     }
 
-    public class ConversationMessageWithSession
-    {
-        public string? SessionId { get; set; }
-        public string? Sender { get; set; }
-        public string? Message { get; set; }
-    }
 }

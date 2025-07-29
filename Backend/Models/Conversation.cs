@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Backend.DTOs;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Backend.Models
@@ -11,8 +12,5 @@ namespace Backend.Models
 
         public string? SessionId { get; set; }
         public List<ConversationMessage> Chat { get; set; } = new();
-
-        //public bool Closed { get; set; }
-        //public bool Escalated { get; set; }
     }
 }
